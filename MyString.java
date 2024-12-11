@@ -14,17 +14,21 @@ public class MyString {
         //System.out.println(subsetOf("eh", hello)); // true
         //System.out.println(spacedString(hello));
         //System.out.println(spacedString("Dror"));
-        System.out.println("\nTesting remove:");
-        System.out.println("committee - meet -> " + MyString.remove("committee", "meet") + " (expected: comit)");
-        System.out.println("abc - abc -> " + MyString.remove("abc", "abc") + " (expected: )");
-        System.out.println("abc - b -> " + MyString.remove("abc", "b") + " (expected: ac)");
-        System.out.println("hello - empty string -> " + MyString.remove("hello", "") + " (expected: hello)");
+        //System.out.println("\nTesting remove:");
+        //System.out.println("committee - meet -> " + MyString.remove("committee", "meet") + " (expected: comit)");
+        //System.out.println("abc - abc -> " + MyString.remove("abc", "abc") + " (expected: )");
+        //System.out.println("abc - b -> " + MyString.remove("abc", "b") + " (expected: ac)");
+        //System.out.println("hello - empty string -> " + MyString.remove("hello", "") + " (expected: hello)");
         //System.out.println("String num 1 : " + randomStringOfLetters(1)); 
         //System.out.println("String num 5 : " + randomStringOfLetters(5)); 
         //System.out.println("String num 10 : " + randomStringOfLetters(10)); 
         //System.out.println("String num 0 : " + randomStringOfLetters(0)); 
         //System.out.println("String num -5 : " + randomStringOfLetters(-5)); 
-        //// Put your other tests here.
+        System.out.println("\nTesting spacedString:");
+        System.out.println("silent -> \"" + MyString.spacedString("silent") + "\" (expected: s i l e n t)");
+        System.out.println("a -> \"" + MyString.spacedString("a") + "\" (expected: a)");
+        System.out.println("empty string -> \"" + MyString.spacedString("") + "\" (expected: )");
+        System.out.println("hi -> \"" + MyString.spacedString("hi") + "\" (expected: h i)");//// Put your other tests here.
     }
 
     /**
@@ -93,11 +97,11 @@ public class MyString {
      * @return a string consisting of the characters of str, separated by spaces.
      */
     public static String spacedString(String str) {
-        char[] strChar = new char[(str.length() * 2) - 1];
-        String result = "";
-        if (str.length() == 1) {
+        if (str.length() <= 1) {
             return str;
         }
+        char[] strChar = new char[(str.length() * 2) - 1];
+        String result = "";
 
         for (int i = 0; i < strChar.length; i++) {
             if (i % 2 == 0) {
