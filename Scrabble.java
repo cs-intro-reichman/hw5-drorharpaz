@@ -79,9 +79,25 @@ public class Scrabble {
 			}
 		}
 		sum = sum * word.length();
-		if (word.contentEquals("runi")) 	{sum += 1000;}
+		if (isContainsRuni(word)) 	{sum += 1000;}
 		if (word.length() == HAND_SIZE) 	{sum += 50;}
 		return sum;
+	}
+
+	public static boolean isContainsRuni(String word){
+		if (word.length() < "runi".length()) {
+			return false;
+		}
+		int indexOfr = word.indexOf('r');
+		int indexOfu = word.indexOf('u');
+		int indexOfn = word.indexOf('n');
+		int indexOfi = word.indexOf('i');
+		if (indexOfr < indexOfu && 
+			indexOfu < indexOfn &&
+			indexOfn < indexOfi &&
+			indexOfr != -1) {
+			return true;
+		}else{ return false;}
 	}
 
 	// Creates a random hand of length (HAND_SIZE - 2) and then inserts
@@ -99,12 +115,13 @@ public class Scrabble {
     // 3. The user is prompted to enter another word, or '.' to end the hand. 
 	public static void playHand(String hand) {
 		int n = hand.length();
+		String coruntHand = hand;
 		int score = 0;
 		// Declares the variable in to refer to an object of type In, and initializes it to represent
 		// the stream of characters coming from the keyboard. Used for reading the user's inputs.   
 		In in = new In();
 		while (hand.length() > 0) {
-			System.out.println("Current Hand: " + MyString.spacedString(hand));
+			System.out.println("Current Hand: " + MyString.spacedString(coruntHand));
 			System.out.println("Enter a word, or '.' to finish playing this hand:");
 			// Reads the next "token" from the keyboard. A token is defined as a string of 
 			// non-whitespace characters. Whitespace is either space characters, or  
@@ -116,7 +133,7 @@ public class Scrabble {
 			if (isWordInDictionary(input)) {
 				int inputScore = wordScore(input);
 				score += inputScore;
-				hand = MyString.remove(hand, input);
+				coruntHand = MyString.remove(coruntHand, input);
 				System.out.println(input + " earned " + inputScore + " points. Score: " + score + " points");
 			}else {
 				System.out.println("No such word in the dictionary. Try again.");
@@ -159,7 +176,9 @@ public class Scrabble {
 		///testScrabbleScore();    
 		///testCreateHands();  
 		//testPlayHands();
-		playGame();
+		//playGame();
+		//System.out.println("'running' -> " + Scrabble.wordScore("running") + " (expected: 1056)"); // (r=1, u=1, n=1, n=1, i=1, n=1, g=2) * 7  + 1000 bonus
+		ScrabbleTest.testPlayHandWithMockInput();
 	}
 
 	public static void testBuildingTheDictionary() {
@@ -183,6 +202,7 @@ public class Scrabble {
 		System.out.println(createHand());
 		System.out.println(createHand());
 	}
+
 	public static void testPlayHands() {
 		init();
 		//playHand("ocostrza");
