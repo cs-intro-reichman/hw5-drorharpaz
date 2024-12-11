@@ -13,6 +13,12 @@ public class MyString {
         //System.out.println(subsetOf("Ht", hello)); // false
         //System.out.println(subsetOf("eh", hello)); // true
         //System.out.println(spacedString(hello));
+        //System.out.println(spacedString("Dror"));
+        System.out.println("\nTesting remove:");
+        System.out.println("committee - meet -> " + MyString.remove("committee", "meet") + " (expected: comit)");
+        System.out.println("abc - abc -> " + MyString.remove("abc", "abc") + " (expected: )");
+        System.out.println("abc - b -> " + MyString.remove("abc", "b") + " (expected: ac)");
+        System.out.println("hello - empty string -> " + MyString.remove("hello", "") + " (expected: hello)");
         //System.out.println("String num 1 : " + randomStringOfLetters(1)); 
         //System.out.println("String num 5 : " + randomStringOfLetters(5)); 
         //System.out.println("String num 10 : " + randomStringOfLetters(10)); 
@@ -89,9 +95,13 @@ public class MyString {
     public static String spacedString(String str) {
         char[] strChar = new char[(str.length() * 2) - 1];
         String result = "";
+        if (str.length() == 1) {
+            return str;
+        }
+
         for (int i = 0; i < strChar.length; i++) {
             if (i % 2 == 0) {
-                strChar[i] = str.charAt(i / 2);
+                strChar[i] = str.charAt((i / 2));
             } else{
                 strChar[i] = ' ';
             }
@@ -135,13 +145,16 @@ public class MyString {
         char[] str1Arry = new char[str1.length()];
         char[] str2Arry = new char[str2.length()];
         String resulString = "";
+        if (str2.length() == 0) {
+            return str1;
+        }
         for (int i = 0; i < str1Arry.length; i++){
            str1Arry[i] = str1.charAt(i);
         }
         for (int i = 0; i < str2Arry.length; i++){
            str2Arry[i] = str2.charAt(i);
         }
-        for (int i = 0; i < str2Arry.length; i ++){
+        for (int i = 0; i < str1Arry.length; i ++){
             for (int j = 0; j < str2Arry.length; j ++){
                 if (str2Arry[j] == str1Arry[i]) {
                     str2Arry[j] = ' ';
@@ -150,9 +163,9 @@ public class MyString {
             }
         }
         
-        for (int i = 0; i < str2Arry.length; i ++) {
-            if (str2Arry[i] != ' ') {
-                resulString += str2Arry[i]; 
+        for (int i = 0; i < str1Arry.length; i ++) {
+            if (str1Arry[i] != ' ') {
+                resulString += str1Arry[i]; 
             }
         }
         return resulString;
