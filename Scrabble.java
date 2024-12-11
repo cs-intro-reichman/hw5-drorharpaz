@@ -176,9 +176,8 @@ public class Scrabble {
 		///testScrabbleScore();    
 		///testCreateHands();  
 		//testPlayHands();
-		//playGame();
+		playGame();
 		//System.out.println("'running' -> " + Scrabble.wordScore("running") + " (expected: 1056)"); // (r=1, u=1, n=1, n=1, i=1, n=1, g=2) * 7  + 1000 bonus
-		ScrabbleTest.testPlayHandWithMockInput();
 	}
 
 	public static void testBuildingTheDictionary() {
